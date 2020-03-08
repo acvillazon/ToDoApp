@@ -9,6 +9,7 @@ Todo-App, es una aplicación Web (similar a Trello) que le permitirá al usuario
 * Asignar/Remover usuarios a tarea.
 * Asignar/Remover usuario a dashboard
 * Pequeño buscar de tareas.
+* Drag and Drop de tareas (entre listas)
 
 ## Construido con 🛠️
 

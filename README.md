@@ -10,9 +10,6 @@ Todo-App, es una aplicación Web (similar a Trello) que le permitirá al usuario
 * Asignar/Remover usuario a dashboard
 * Pequeño buscar de tareas.
 
-
-## Comenzando 🚀
-
 ## Construido con 🛠️
 
 * [Node: 12.14.0](https://nodejs.org/en/)
@@ -21,7 +18,7 @@ Todo-App, es una aplicación Web (similar a Trello) que le permitirá al usuario
 
 ### Pre-requisitos 📋
 
-Para poder en marcha el proyecto deberemos tener instalado.
+Para poder en marcha el proyecto debemos tener instalado.
 
 ```
 NodeJS
@@ -30,7 +27,7 @@ Angular
 
 ### Instalación 🔧
 
-Luego de descargar el codigo fuente. 
+Luego de descargar el código fuente. 
 Debemos construir y instalar las dependencias del proyecto (API & Aplicación Web).
 
 Para instalar las dependencias de la API ejecutamos 
@@ -39,10 +36,10 @@ Para instalar las dependencias de la API ejecutamos
 npm install
 ```
 
-Luego instalaremos las dependencias necesarias para ejecutar la applicacion
+Luego instalaremos las dependencias necesarias para ejecutar la aplicación
 
 ```
-cd fronted
+cd frontend
 npm install
 ng serve -o 
 
@@ -55,7 +52,6 @@ App : http://localhost:4200
 ```
 
 #### Por el acceso a la base de datos no nos tenemos que preocupar, ya que implementamos una base de datos Online
-
-## Autores ✒️
+## Autores 
 
 * **Andrés Villazon** - [acvillazon](https://github.com/acvillazon)

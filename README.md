@@ -1,8 +1,7 @@
 # ToDo App
 
-Todo-App, es una applicacion web (similar a Trello) que le permitira al usuario llevar organizadas sus listas de tarea, las cuales podran ser organizadas a su vez en dashboards.
-La aplicacón web cuenta con un pequeño y basico sistema de logeo, mediante el cual el usuario podra acceder a los apartados de la pagina. 
-Algunas de las funcionalidades presentes en la app son las siguientes
+Todo-App, es una aplicación Web (similar a Trello) que le permitirá al usuario llevar organizadas sus listas de tarea, las cuales podrán ser organizadas a su vez en dashboards. La aplicación Web cuenta con un pequeño y básico sistema de logeo, mediante el cual el usuario podrá acceder a los apartados de la pagina. Algunas de las funcionalidades presentes en la app son las siguientes:
+
 
 * Crear dashboard.
 * Crear lista de tarea.
@@ -10,9 +9,7 @@ Algunas de las funcionalidades presentes en la app son las siguientes
 * Asignar/Remover usuarios a tarea.
 * Asignar/Remover usuario a dashboard
 * Pequeño buscar de tareas.
-
-
-## Comenzando 🚀
+* Drag and Drop de tareas (entre listas)
 
 ## Construido con 🛠️
 
@@ -20,11 +17,9 @@ Algunas de las funcionalidades presentes en la app son las siguientes
 * [Angular CLI: 9.0.](https://angular.io)
 * [MongoDB (Servicio Mlab)](https://mlab.com)
 
-_Estas instrucciones te permitirán obtener una copia del proyecto en funcionamiento en tu máquina local para propósitos de desarrollo y pruebas._
-
 ### Pre-requisitos 📋
 
-Para poder en marcha el proyecto deberemos tener instalado.
+Para poder en marcha el proyecto debemos tener instalado.
 
 ```
 NodeJS
@@ -33,22 +28,34 @@ Angular
 
 ### Instalación 🔧
 
-Luego de descargar el codigo fuente. 
+Luego de descargar el código fuente. 
 Debemos construir y instalar las dependencias del proyecto (API & Aplicación Web).
 
-Para instalar las dependencias de la API ejecutamos 
+Para instalar las dependencias y ejecutar la API mediante linea de comando usamos los siguientes comandos (desde la raiz del proyecto)
 
 ```
 npm install
+npm run dev
+ó
+npm run prod (not ready), este script hace uso de PM2 para gestionar los procesos.
 ```
 
-Luego instalaremos las dependencias necesarias para ejecutar la applicacion
+Luego instalaremos las dependencias necesarias para ejecutar la aplicación y seguido ejecutamos el proyecto
 
 ```
-cd fronted
+cd frontend
+npm install
 ng serve -o 
+
 ```
 
-## Autores ✒️
+Los puertos correspondientes son los siguientes.
+```
+API : http://localhost:3000
+App : http://localhost:4200
+```
+
+#### Por el acceso a la base de datos no nos tenemos que preocupar, ya que implementamos una base de datos Online
+## Autores 
 
 * **Andrés Villazon** - [acvillazon](https://github.com/acvillazon)

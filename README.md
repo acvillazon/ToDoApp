@@ -20,8 +20,6 @@ Algunas de las funcionalidades presentes en la app son las siguientes
 * [Angular CLI: 9.0.](https://angular.io)
 * [MongoDB (Servicio Mlab)](https://mlab.com)
 
-_Estas instrucciones te permitirán obtener una copia del proyecto en funcionamiento en tu máquina local para propósitos de desarrollo y pruebas._
-
 ### Pre-requisitos 📋
 
 Para poder en marcha el proyecto deberemos tener instalado.
@@ -46,7 +44,9 @@ Luego instalaremos las dependencias necesarias para ejecutar la applicacion
 
 ```
 cd fronted
+npm install
 ng serve -o 
+
 ```
 
 ## Autores ✒️

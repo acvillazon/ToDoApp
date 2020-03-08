@@ -1,6 +1,20 @@
-<div class="animated fadeIn" style="display: flex; flex-wrap: wrap; justify-content: start;">
-    <a [routerLink]="['dashboard',dash._id]" *ngFor="let dash of dashboards;" class="card" style="margin: 15px; width: 15rem; height: auto; align-items: center;">
-        <img src="../../../assets/img/idea.svg" style="width: 50%!important; margin-top: 20px;" class="card-img-top">
+<div class="animated fadeIn" 
+  style="display: flex; 
+        flex-wrap: wrap; 
+        justify-content: start;">
+
+    <a [routerLink]="['dashboard',dash._id]" 
+        *ngFor="let dash of dashboards;" 
+        class="card" 
+        style=" margin: 15px; 
+                width: 15rem; 
+                height: auto; 
+                align-items: center;">
+
+        <img src="../../../assets/img/idea.svg" 
+          style="width: 50%!important; 
+                  margin-top: 20px;" 
+          class="card-img-top">
         <div class="card-body">
           <p class="card-text">{{dash.title}}</p>
         </div>

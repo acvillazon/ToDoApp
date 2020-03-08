@@ -3,7 +3,8 @@ import Swal from 'sweetalert2';
 import { DashBoard } from '../../models/dashboard.model';
 import { DashboardService } from '../../services/dashboard.service';
 import { UserService } from '../../services/user.service';
-import { AuthService } from '../../services/auth.service';
+import { PopUpService } from '../../services/pop-up.service';
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -15,7 +16,8 @@ export class DashboardComponent implements OnInit {
   dashList:DashBoard[]=[];
   constructor(
     private dashS:DashboardService,
-    public userService:UserService
+    public userService:UserService,
+    private popUp:PopUpService
     ) { 
   }
   
@@ -46,6 +48,12 @@ export class DashboardComponent implements OnInit {
         this.dash.status=true;
       },
     }).then((result) => {
+      if(result.dismiss)return;
+
+      if(result.value=='' && this.dash.title==''){
+        return this.popUp.simpleMessage("it's necessary to set a title","error", 1500);
+      }
+
       Swal.fire({
         title: 'Wait a minute...',
         icon: 'info',
@@ -61,22 +69,10 @@ export class DashboardComponent implements OnInit {
       this.getDash();
 
       Swal.close();
-      
-      Swal.fire({
-        title: 'Dashboard created',
-        timer: 1500,
-        icon: 'success',
-      });
-
-
+      this.popUp.simpleMessage("Dashboard created",'success',1500);
     },err=>{
-      
-      Swal.fire({
-        title: 'Error',
-        timer: 1800,
-        icon: 'error',
-      });
-      
+      Swal.close();
+      this.popUp.simpleMessage("Error saving data",'error',1500);
     });
   }
 

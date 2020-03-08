@@ -19,7 +19,7 @@ Todo-App, es una aplicación Web (similar a Trello) que le permitirá al usuario
 
 ### Pre-requisitos 📋
 
-Para poder en marcha el proyecto debemos tener instalado.
+Para poner en marcha el proyecto debemos tener instalado.
 
 ```
 NodeJS

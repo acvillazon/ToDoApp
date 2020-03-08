@@ -30,13 +30,16 @@ Angular
 Luego de descargar el código fuente. 
 Debemos construir y instalar las dependencias del proyecto (API & Aplicación Web).
 
-Para instalar las dependencias de la API ejecutamos 
+Para instalar las dependencias y ejecutar la API mediante linea de comando usamos los siguientes comandos (desde la raiz del proyecto)
 
 ```
 npm install
+npm run dev
+ó
+npm run prod (not ready), este script hace uso de PM2 para gestionar los procesos.
 ```
 
-Luego instalaremos las dependencias necesarias para ejecutar la aplicación
+Luego instalaremos las dependencias necesarias para ejecutar la aplicación y seguido ejecutamos el proyecto
 
 ```
 cd frontend

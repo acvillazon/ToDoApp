@@ -1,0 +1,32 @@
+<mat-drawer-container class="example-container2 animated fadeInLeft" [hasBackdrop]="true">
+  <mat-drawer style="width: 40%;" #drawer [mode]="'Push'" style="padding:5px;">
+    <div *ngIf="userService.users">
+      <div *ngFor="let item of userService.users">
+      <div class="card">
+          <div class="card-body">
+            {{item.username}}
+            <br>
+            <small>{{item.email}}</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </mat-drawer>
+  <mat-drawer-content>
+    <div class="container-fluid animated fadeIn" style="padding: 20px 5rem;">
+      <div style="display: flex; justify-content: space-between;">
+        <h2>My Dashboards</h2>
+        <div style="display: flex; justify-content: end;">
+          <button class="btn btn-dark" (click)="newDash()">
+            New dashboard
+          </button>
+          <button style="margin-left: 20px;" class="btn btn-warning" (click)="drawer.toggle()">
+            <mat-icon>supervisor_account</mat-icon>
+          </button>
+        </div>
+      </div>
+      <app-dashboard-card [dashboards]="dashList"></app-dashboard-card>
+    </div>
+ 
+  </mat-drawer-content>
+</mat-drawer-container>

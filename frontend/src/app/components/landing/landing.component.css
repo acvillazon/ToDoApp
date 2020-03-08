@@ -1,0 +1,49 @@
+@import url(https://fonts.googleapis.com/css?family=Ropa+Sans);
+.containerLanding{
+    height: 100%;
+    background-color: /*#5373F2*/ #52acff !important;
+}
+
+.btnBehavior:active{
+    background-color: yellow !important;
+    color:gray !important;
+}
+
+.btnBehavior:hover{
+    background-color: yellow !important;
+    color:gray !important;
+}
+
+.containerBtn{
+    display: flex; 
+    flex-direction: row;
+    margin-top: -5%;
+}
+
+.btnAction{
+    padding:5px 70px; 
+    margin-right: 4%;
+    font-family: 'Ropa Sans';
+    font-size: 25px;
+    color: yellow;
+    border-color: yellow!important;
+}
+
+@media (max-width: 500px) {
+    /* For desktop: */
+    .containerBtn{
+        display: flex; 
+        flex-direction: column;
+        margin-top: -5%;
+    }
+
+    .btnAction{
+        padding:5px 70px; 
+        margin-bottom: 5%;
+        font-family: 'Ropa Sans';
+        font-size: 25px;
+        color: yellow;
+        border-color: yellow!important;
+    }
+    
+}

@@ -1,0 +1,132 @@
+
+<mat-drawer-container class="example-container2 animated fadeInLeft" [hasBackdrop]="true">
+    <mat-drawer style="width: 40%;" #drawer [mode]="'Push'">
+        <div *ngIf="taskSelected && forEdit" style="margin-top: 20px;" class="container-fluid">
+            <h5>{{taskSelected.tittle}}</h5>
+            <hr>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Task descripcion</label>
+                <textarea class="form-control" [(ngModel)]="taskSelected.description" rows="3"></textarea>
+            </div>
+            <hr>
+            <div class="form-group">
+                <div style="display: flex; align-content: center;">
+                    <span style="align-self: center;">Assigned to:  
+                    </span>
+                    <mat-icon (click)="addNewMemberToTask()" style="color:royalblue; align-self: center;">add_circle</mat-icon>
+                </div>
+                <mat-chip-list aria-label="Fish selection">
+                    <mat-chip *ngFor="let item of taskSelected.assignedTo" 
+                        [removable]="true"
+                        (removed)="removeMemberOfTask(item)"
+                        >{{item.username}}
+                        <mat-icon matChipRemove>cancel</mat-icon>
+                    </mat-chip>
+                </mat-chip-list>
+            </div>
+            <hr>
+            <span>Status</span>
+
+            <div *ngFor="let item of status; let i = index;" class="form-check">
+                <input class="form-check-input" 
+                    [(ngModel)]="taskSelected.status" 
+                    type="radio" name="exampleRadios" 
+                    id="exampleRadios1" [value]="i" 
+                    [checked]="taskSelected.status===i">
+
+                <label class="form-check-label" for="exampleRadios1">
+                    {{item}}
+                </label>
+            </div>
+            <hr>
+            <div style="display: flex; justify-content: space-between;">
+                <button (click)="updateTaskAll(taskSelected,drawer)" type="submit" style="width: 45%;" class="btn btn-primary">Save</button>
+                <button (click)="taskSelected=null; drawer.toggle()" type="submit" style="width: 45%;" class="btn btn-danger">Cancel</button>
+            </div>
+            <hr>
+            <br>
+            <button style="display: flex; justify-content: center;" (click)="taskSelected.status='3';updateTaskAll(taskSelected,drawer)" type="submit" class="btn btn-warning btn-block">Delete
+                <mat-icon style="color: salmon;">delete_forever</mat-icon>
+            </button>
+
+        </div>
+
+        <div class="container-fluid" *ngIf="!forEdit">
+            <br>
+            <h4>Search for task</h4>
+            <hr>
+            <div style="padding: 5px;" class="form-group">
+                <input type="text" class="form-control" #input (keyup)="filterTaskForSearch(input.value)" >
+            </div>
+            <div>
+                <div (click)="drawer.toggle();forEdit=true;taskDetails(drawer, task)" class="card" *ngFor="let task of taskForSearch">
+                    <div class="card-body">
+                      {{task.tittle}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </mat-drawer>
+    <mat-drawer-content>
+        <div *ngIf="dash" style="width: 100%; height: 40px; background-color:gray; display: flex; justify-content: space-between;" class="animated fadeIn container-fluid">
+            <div style="display: flex; justify-content: start;">
+                <span style="color: white; align-self: center;">Members: </span>
+                <div *ngFor="let member of dash.members" style="align-self: center; margin-left: 5px; display: flex; justify-content: center;">
+                    <span style="align-self: center;" class="badge badge-warning">{{member['username']}}
+                    </span>
+                    <span (click)="removeMemberOfDash(member)" style="align-self: center;">
+                        <mat-icon style="color: salmon;">cancel</mat-icon>
+                    </span>
+                </div>
+                <div (click)="addUserToBoard()" style="align-self: center; margin-left: 5px;">
+                    <span class="badge" style="background-color:#52acff; color:white;">
+                        <i class="fa fa-plus fa-1x"></i>
+                    </span>
+                </div>
+            </div>
+            <div style="align-self:center; display: flex;">
+                <div (click)="createList()" style="align-self: center;">
+                    <span style="color:white;" class="btn">
+                        <i class="fa fa-list-ul fa-1x" style="color:white" aria-hidden="true"></i>
+                        New list
+                    </span>
+                </div>
+                <div (click)="forEdit=false;drawer.toggle()" style="align-self: center;">
+                    <span style="color:white;" class="btn">
+                        <i class="fa fa-list fa-1x" style="color:white" aria-hidden="true"></i>
+                        Search for task
+                    </span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="container-fluid animated fadeIn" style="margin-top:1%;">
+            <div cdkDropListGroup>
+                <div *ngFor="let list of dashService.listsInDash" class="example-container">
+                  <h2>{{list['tittle']}}</h2>
+                  
+                  <div
+                    cdkDropList
+                    [cdkDropListData]="taskService.taskGroupedByList.get(list._id)"
+                    class="example-list"
+                    (cdkDropListDropped)="drop($event,list._id)">
+                    
+                    <form>
+                        <div class="form-group" style="display: flex; padding: 10px 10px 0px 10px;">
+                            <input type="text" #task_id class="form-control" style="margin: 0 5px;" (keyup.enter)="createTask(task_id.value,list['_id'])">
+                            <button (click)="createTask(task_id.value,list['_id'])"><i style="color: #52acff; align-self: center;" class="fa fa-plus-square fa-2x" aria-hidden="true"></i></button>
+                        </div>
+                    </form>
+                    
+                    <div (click)="forEdit=true;taskDetails(drawer, item)" 
+                        class="example-box" 
+                        *ngFor="let item of taskService.taskGroupedByList.get(list._id)" 
+                        cdkDrag>
+                            {{item['tittle']}}
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </mat-drawer-content>
+</mat-drawer-container>

@@ -48,12 +48,13 @@ ng serve -o
 
 ```
 
+Los puertos correspondientes son los siguientes.
 ```
 API : http://localhost:3000
 App : http://localhost:4200
 ```
 
-# Por el acceso a la base de datos no nos tenemos que preocupar, ya que implementamos una base de datos Online
+#### Por el acceso a la base de datos no nos tenemos que preocupar, ya que implementamos una base de datos Online
 
 ## Autores ✒️
 

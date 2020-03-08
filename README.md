@@ -1,8 +1,7 @@
 # ToDo App
 
-Todo-App, es una applicacion web (similar a Trello) que le permitira al usuario llevar organizadas sus listas de tarea, las cuales podran ser organizadas a su vez en dashboards.
-La aplicacón web cuenta con un pequeño y basico sistema de logeo, mediante el cual el usuario podra acceder a los apartados de la pagina. 
-Algunas de las funcionalidades presentes en la app son las siguientes
+Todo-App, es una aplicación Web (similar a Trello) que le permitirá al usuario llevar organizadas sus listas de tarea, las cuales podrán ser organizadas a su vez en dashboards. La aplicación Web cuenta con un pequeño y básico sistema de logeo, mediante el cual el usuario podrá acceder a los apartados de la pagina. Algunas de las funcionalidades presentes en la app son las siguientes:
+
 
 * Crear dashboard.
 * Crear lista de tarea.
@@ -48,6 +47,13 @@ npm install
 ng serve -o 
 
 ```
+
+```
+API : http://localhost:3000
+App : http://localhost:4200
+```
+
+# Por el acceso a la base de datos no nos tenemos que preocupar, ya que implementamos una base de datos Online
 
 ## Autores ✒️
 

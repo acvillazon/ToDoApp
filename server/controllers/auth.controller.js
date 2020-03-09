@@ -15,7 +15,7 @@ exports.login = async (req,res) =>{
                 idToken:validate.createToken(auth)
             });
         }else{ 
-            res.status(404).json({event:'Incorrect Password'});
+            res.status(500).json({event:'Incorrect Password'});
         }
         
     } catch (error) {

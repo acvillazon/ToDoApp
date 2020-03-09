@@ -37,18 +37,20 @@ export class LoginComponent implements OnInit {
       text:'Wait a minute.',
       icon:'info'
     });
+
     Swal.showLoading();
     
     this.auth.login(this.user).subscribe(data =>{
+      console.log(data)
       this.router.navigateByUrl("/toDo");
       Swal.close();
       this.rememberMe?localStorage.setItem("email", this.user.email.toLowerCase()):null;
-    },err =>{
+    }, (err) =>{
       Swal.fire({
         allowOutsideClick:true,
         title:'Authentication Error',
         icon:'error',
-        text: err.error.error.message
+        text: err.error.event
       });
     });
   }  

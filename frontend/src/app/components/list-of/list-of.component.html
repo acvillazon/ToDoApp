@@ -205,9 +205,10 @@
                             <input type="text" 
                                 #task_id class="form-control" 
                                 style="margin: 0 5px;" 
-                                (keyup.enter)="createTask(task_id.value,list['_id'])">
+                                name="task_id"
+                                (keyup.enter)="createTask(task_id.value,list['_id']);task_id.value = ''">
                             
-                                <button (click)="createTask(task_id.value,list['_id'])">
+                                <button (click)="createTask(task_id.value,list['_id']);task_id.value = ''">
                                 <mat-icon 
                                     style="color: #52acff; 
                                     align-self: center;" >

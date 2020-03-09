@@ -34,6 +34,7 @@ export class RegisterComponent implements OnInit {
     Swal.showLoading();
     
     this.auth.register(this.user).subscribe(data =>{
+      Swal.close();
       this.router.navigateByUrl("/toDo");
       this.rememberMe?localStorage.setItem("email", this.user.email.toLowerCase()):null;
     },err =>{
@@ -41,7 +42,7 @@ export class RegisterComponent implements OnInit {
         allowOutsideClick:true,
         title:'Register error',
         icon:'error',
-        text: err.error.error.message
+        text: 'Error de registro'
       });
     });
   }

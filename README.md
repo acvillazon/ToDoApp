@@ -55,6 +55,10 @@ API : http://localhost:3000
 App : http://localhost:4200
 ```
 
+# Usuario y Contraseña de para test.
+* email: todotest@gmail.com
+* password: +123456
+
 #### Por el acceso a la base de datos no nos tenemos que preocupar, ya que implementamos una base de datos Online
 ## Autores 
 

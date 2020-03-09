@@ -25,6 +25,7 @@ export class ListOfComponent implements OnInit {
   taskForSearch:any[]=[];
   userJSON:any={}
   status:string[]=["Open","In-Progress","Completed"];
+  colorsStatus:string[]=["#def3fd","#d5f7c4","#fddfdf"];
 
   constructor(private path:ActivatedRoute,
               public dashService:DashboardService,
@@ -39,10 +40,12 @@ export class ListOfComponent implements OnInit {
     this.getUsers();
     this.getInfoDash();
     this.getLists();
+
   }
   
   getUsers(){
-    this.userService.getUsers().subscribe((data:User[])=>{  
+    this.userService.getUsers().subscribe((data:User[])=>{ 
+      this.userService.users=data['Users']; 
     },err =>{
       this.popUp.simpleMessage("Internal error getting users","error",2000);
     });

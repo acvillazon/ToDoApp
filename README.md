@@ -55,7 +55,7 @@ API : http://localhost:3000
 App : http://localhost:4200
 ```
 
-# Usuario y Contraseña de para test.
+# Usuario y contraseña para test (login => ToDo App).
 * email: todotest@gmail.com
 * password: +123456
 

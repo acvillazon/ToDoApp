@@ -86,7 +86,7 @@ export class ListOfComponent implements OnInit {
   }
 
   async createList(){
-    let response = await this.popUp.inputText("Name of list", true, "create");
+    let response = await this.popUp.inputText("List name", true, "create");
     if(response['result'].dismiss){return;}
     if(response['result'].value=='' && !response["textInput"]){
       return this.popUp.simpleMessage("it's necessary to set a name","error", 1500);
@@ -120,7 +120,7 @@ export class ListOfComponent implements OnInit {
 
     this.dashService.removeList(id).subscribe(data=>{
       Swal.close()
-      this.popUp.simpleMessage("The list was elimitaed","success",2000);
+      this.popUp.simpleMessage("The list was eliminated","success",2000);
     },err=>{
       Swal.close()
       this.popUp.simpleMessage("Error removing the list","error",2000);

@@ -47,7 +47,7 @@ exports.newTask = async (req,res) =>{
             .populate("assignedTo").exec();
         let taskMod = _groupBy(tasksUpdated, task => task.list); 
 
-        res.status(200).json({task, taskMod:Array.from(taskMod), tasksUpdated, event:'Task created'});
+        res.status(200).json({task:tasksUpdated, taskMod:Array.from(taskMod), taskNew:task, event:'Task created'});
         
     } catch (error) {
         res.status(500).json({event:'Internal Error Server'});
@@ -68,7 +68,7 @@ exports.updateTaskAll = async (req,res) =>{
             .populate("assignedTo").exec();
         let taskMod = _groupBy(tasksUpdated, task => task.list); 
 
-        res.status(200).json({task, taskMod:Array.from(taskMod), tasksUpdated, event:'Task updated'});        
+        res.status(200).json({task:tasksUpdated, taskMod:Array.from(taskMod), taskNew:task, event:'Task updated'});        
     } catch (error) {
         res.status(500).json({event:'Internal Error Server'});
     }
@@ -82,9 +82,9 @@ exports.addMemberToTask = async (req,res) =>{
         let tasksUpdated = await Task.find({dashboard:req.body.dashboard, status: { $lte: 2 }})
             .populate("assignedTo").exec();
         let taskMod = _groupBy(tasksUpdated, task => task.list); 
-
-        res.status(200).json({task, taskMod:Array.from(taskMod), tasksUpdated, event:'Member updated'});
-    } catch (error) {
+        
+        res.status(200).json({task:tasksUpdated, taskMod:Array.from(taskMod), taskNew:task, event:'Member updated'});
+        } catch (error) {
         res.status(500).json({event:'Internal Error Server', error});        
     }
 };
@@ -102,7 +102,7 @@ exports.removeMemberToTask = async (req,res) =>{
             .populate("assignedTo").exec();
         let taskMod = _groupBy(tasksUpdated, task => task.list); 
 
-        res.status(200).json({newtask, taskMod:Array.from(taskMod), tasksUpdated, event:"Member deleted"})
+        res.status(200).json({task:tasksUpdated, taskMod:Array.from(taskMod), taskNew:newtask, event:"Member deleted"})
     } catch (error) {
         res.status(500).json({event:'Internal Error Server', error});        
     }

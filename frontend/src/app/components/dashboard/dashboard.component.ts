@@ -36,7 +36,7 @@ export class DashboardComponent implements OnInit {
 
   newDash(){
     Swal.fire({
-      title: 'Enter name for the new dashboard',
+      title: 'Dashboard name',
       input: 'text',
       inputAttributes: { autocapitalize: 'off'},
       showCancelButton: true,
@@ -77,11 +77,7 @@ export class DashboardComponent implements OnInit {
   }
 
   removeDashboard(event:string){
-    Swal.fire({
-      title: 'Wait a minute...',
-      icon: 'info',
-    });
-
+    this.popUp.simpleMessage("Wait a minute...",'info',3000);
     Swal.showLoading();
 
     var eventJSON = JSON.parse(event);

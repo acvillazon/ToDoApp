@@ -31,18 +31,20 @@ export class DashboardService {
     return httpOptions;
   }
 
+  getDashboards(){
+    return this.http.get(`${this.url}dashboard/getAll`,this.getHeaders())
+    .pipe(map(res =>{
+      this.dashboards=res['dashboards'];
+      return res;
+    }));
+  }
+
+  //Get info about a especied dashboard
   getDashboard(_id:string){
     return this.http.get(`${this.url}dashboard/getDash/${_id}`,this.getHeaders());
   }
 
-  getDashboards(){
-    return this.http.get(`${this.url}dashboard/getAll`,this.getHeaders())
-      .pipe(map(res =>{
-          this.dashboards=res['dashboards'];
-          return res;
-      }));
-  }
-
+  ///Get all dashboard of a especified user.
   getMyDash(){
     return this.http.get(`${this.url}dashboard/getInUser`,this.getHeaders())
       .pipe(map(res =>{
@@ -51,6 +53,7 @@ export class DashboardService {
       }));
   }
 
+  /// Get lists of a especified dashboard
   getList(id_:any){
     return this.http.get(`${this.url}list/getAll/${id_}`,this.getHeaders())
       .pipe(map(res =>{
@@ -71,11 +74,19 @@ export class DashboardService {
     return this.http.put(`${this.url}dashboard/removeMember`,{idUser,idDash},this.getHeaders());
   }
 
+  removeDash(idDash:string){
+    return this.http.delete(`${this.url}dashboard/remove/${idDash}`,this.getHeaders());
+  }
+
   createList(list:any){
     return this.http.post(`${this.url}list/new`,list,this.getHeaders())
-      .pipe(map(data =>{
-        this.listsInDash.push(data["List"]);
-        return data;
+    .pipe(map(data =>{
+      this.listsInDash.push(data["List"]);
+      return data;
     }));
+  }
+  
+  removeList(idList:string){
+    return this.http.delete(`${this.url}list/remove/${idList}`,this.getHeaders());
   }
 }

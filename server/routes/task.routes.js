@@ -3,13 +3,13 @@ const router = express.Router();
 const taskhCntr = require("../controllers/task.controller")
 
 router.post('/new', taskhCntr.newTask);
-router.put('/update', taskhCntr.updateTask);
+// router.put('/update', taskhCntr.updateTask);
 router.put('/updateAll', taskhCntr.updateTaskAll);
+
+// Get a especific task.
 router.get('/getTask/:id', taskhCntr.getTask);
 
-//Add new members to a task, who will be responsible for it.
 router.put('/addMember', taskhCntr.addMemberToTask);
-
 router.put('/removeMember', taskhCntr.removeMemberToTask);
 
 //Get all tasks of a dashboard

@@ -1,6 +1,8 @@
 //https://stackoverflow.com/questions/14446511/most-efficient-method-to-groupby-on-an-array-of-objects
 //Take from Stackoverflow.
 
+//it's help us to build a map in an array JSON object. (GroupBy)
+
 exports._groupBy = function(list, keyGetter){
     const map = new Map();
     list.forEach((item) => {
@@ -15,7 +17,7 @@ exports._groupBy = function(list, keyGetter){
     return map;
 };
 
-
+//EXAMPLE, HOW TO USE IT.
 // const pets = [
 //     {type:"Dog", name:"Spot"},
 //     {type:"Cat", name:"Tiger"},

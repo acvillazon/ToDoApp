@@ -187,18 +187,24 @@
                 style="width: 100%;"
 
                 >
-                <div style="width: 300px !important;" *ngFor="let list of dashService.listsInDash" 
-                    class="example-container">
+                <div style="width: 300px !important;" 
+                    *ngFor="let list of dashService.listsInDash;let i = index;"                 
+                    class="example-container animated fadeIn">
                   <h2>{{list['tittle']}}</h2>
                   
                   <div
-                    
-                    
                     cdkDropList
                     [cdkDropListData]="taskService.taskGroupedByList.get(list._id)"
                     class="example-list"
                     (cdkDropListDropped)="drop($event,list._id)">
                     
+                    <div 
+                    style="display: flex; 
+                            justify-content: end; 
+                            width: 100%;
+                            z-index: 10;">
+                        <mat-icon (click)="removeList(list._id,i)" style="color: red;">delete_outline</mat-icon>
+                    </div>
                     <form>
                         <div class="form-group" 
                             style="display: flex; padding: 10px 10px 0px 10px;">
@@ -219,10 +225,11 @@
                         </div>
                     </form>
                     
-                    <div (click)="forEdit=true;taskDetails(drawer, item)" 
-                        class="example-box" 
+                    <div (click)="forEdit=true;taskDetails(drawer, item);" 
+                        class="example-box animated fadeIn" 
+
                         [ngStyle]="{'background-color': colorsStatus[item.status]}"
-                        *ngFor="let item of taskService.taskGroupedByList.get(list._id)" 
+                        *ngFor="let item of taskService.taskGroupedByList.get(list._id); let i=index;" 
                         cdkDrag>
                             {{item['tittle']}}
                             <mat-icon style="color: grey;">settings</mat-icon>

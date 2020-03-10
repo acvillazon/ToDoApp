@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output , EventEmitter} from '@angular/core';
 
 @Component({
   selector: 'app-dashboard-card',
@@ -8,9 +8,14 @@ import { Component, OnInit, Input } from '@angular/core';
 export class DashboardCardComponent implements OnInit {
 
   @Input() dashboards;
+  @Output() remove = new EventEmitter<string>();
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  removeDashboardCard(id,index){
+    this.remove.emit(JSON.stringify({id,index}));
   }
 
 }

@@ -36,7 +36,7 @@
           </button>
         </div>
       </div>
-      <app-dashboard-card [dashboards]="dashList"></app-dashboard-card>
+      <app-dashboard-card (remove)="removeDashboard($event)" [dashboards]="dashList"></app-dashboard-card>
     </div>
  
   </mat-drawer-content>

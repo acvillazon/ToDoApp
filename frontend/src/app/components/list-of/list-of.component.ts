@@ -23,7 +23,7 @@ export class ListOfComponent implements OnInit {
   nameList:string;
 
   taskForSearch:any[]=[];
-  userJSON:any={}
+  userJSON:any={};
   status:string[]=["Open","In-Progress","Completed"];
   colorsStatus:string[]=["#def3fd","#d5f7c4","#fddfdf"];
 
@@ -112,6 +112,21 @@ export class ListOfComponent implements OnInit {
     });
   }
 
+  removeList(id,i){
+    this.popUp.simpleMessage("Wait a minute","info",1500);
+    
+    this.dashService.listsInDash.splice(i,1);
+    this.taskService.taskGroupedByList.delete(id);
+
+    this.dashService.removeList(id).subscribe(data=>{
+      Swal.close()
+      this.popUp.simpleMessage("The list was elimitaed","success",2000);
+    },err=>{
+      Swal.close()
+      this.popUp.simpleMessage("Error removing the list","error",2000);
+    });
+  }
+
   getLists(){
     this.dashService.getList(this.id_).subscribe((data:any) =>{
       this.getTasksOfDash();
@@ -167,7 +182,8 @@ export class ListOfComponent implements OnInit {
       
       //we take the task which was moved and modified its list_id.
       let taskMoved = event.container.data[event.currentIndex];
-      this.updateTask(taskMoved,idList);
+      taskMoved['list']=idList;
+      this.updateTask(taskMoved);
     }
   }
 
@@ -181,8 +197,8 @@ export class ListOfComponent implements OnInit {
     Swal.showLoading();
   }
 
-  updateTask(task:any,idList:string){
-    this.taskService.updateTask(task,idList,this.id_).subscribe(response =>{
+  updateTask(task:any){
+    this.taskService.updateTaskAll(task,this.id_).subscribe(response =>{
       this.popUp.simpleMessage("Task updated","success",2000);
     },err =>{
       this.popUp.simpleMessage("Internal error updating task","error",2000);

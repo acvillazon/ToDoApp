@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
+
+///this Guard prevents that users without authentication could enter to a "private pages".
+// pages that need authentication.
 
 @Injectable({
   providedIn: 'root'

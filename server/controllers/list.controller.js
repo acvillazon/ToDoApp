@@ -1,4 +1,5 @@
 const Lista = require("../models/list.model");
+const Task = require("../models/task.model");
 exports.createList = async (req,res) =>{
     try {
         let List = new Lista(
@@ -17,7 +18,7 @@ exports.createList = async (req,res) =>{
 
 exports.getAllInDash = async (req,res) =>{
     try {
-        let tasks = await Lista.find({dashboard:req.params.id})
+        let tasks = await Lista.find({dashboard:req.params.id,status:true});
         res.status(200).json({tasks})
     } catch (error) {
         res.status(500).json({event:'Internal Error Server', error});        
@@ -35,8 +36,9 @@ exports.updateList = async (req,res) =>{
 
 exports.deleteList = async (req,res) =>{
     try {
-        let task = await Lista.findOneAndDelete(req.body.List_id)
-        res.status(200).json({task})
+        let list = await Lista.findByIdAndUpdate(req.params.id,{status:false},{new:true});
+        let tasks = await Task.updateMany({list:req.params.id},{status:3});
+        res.status(200).json({list,tasks});
     } catch (error) {
         res.status(500).json({event:'Internal Error Server', error});        
     }

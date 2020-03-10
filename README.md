@@ -1,4 +1,4 @@
-# ToDo App
+# [ToDo App](https://app-ui-todo.herokuapp.com)
 
 Todo-App, es una aplicación Web (similar a Trello) que le permitirá al usuario llevar organizadas sus listas de tarea, las cuales podrán ser organizadas a su vez en dashboards. La aplicación Web cuenta con un pequeño y básico sistema de logeo, mediante el cual el usuario podrá acceder a los apartados de la pagina. Algunas de las funcionalidades presentes en la app son las siguientes:
 
@@ -58,6 +58,10 @@ App : http://localhost:4200
 # Usuario y contraseña para test (login => ToDo App).
 * email: todotest@gmail.com
 * password: +123456
+
+Si por alguna razón ocurre un problema al momento de ejecutar el proyecto, se podra acceder mediante la siguiente URL.
+
+[ToDo App](https://app-ui-todo.herokuapp.com), este link los re-dirigirá a una copia del proyecto que se encuentra corriendo en un servidor de HEROKU, para cualquier inquietud podran contactarme via correo electronico.
 
 #### Por el acceso a la base de datos no nos tenemos que preocupar, ya que implementamos una base de datos Online
 ## Autores 

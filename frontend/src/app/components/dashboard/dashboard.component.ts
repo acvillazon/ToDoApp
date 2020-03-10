@@ -66,7 +66,7 @@ export class DashboardComponent implements OnInit {
   
   sendDataToSave(dash:DashBoard){
     this.dashS.createDashboard(dash).subscribe((data) =>{
-      this.getDash();
+      this.dashList.push(data["dashboard"]);
 
       Swal.close();
       this.popUp.simpleMessage("Dashboard created",'success',1500);
@@ -75,5 +75,32 @@ export class DashboardComponent implements OnInit {
       this.popUp.simpleMessage("Error saving data",'error',1500);
     });
   }
+
+  removeDashboard(event:string){
+    Swal.fire({
+      title: 'Wait a minute...',
+      icon: 'info',
+    });
+
+    Swal.showLoading();
+
+    var eventJSON = JSON.parse(event);
+    this.dashS.removeDash(eventJSON.id).subscribe(data =>{
+      this.dashList.splice(eventJSON['index'],1);
+      Swal.close();
+      this.popUp.simpleMessage("The dashboard have been eliminated","success",1500);
+    },err=>{
+      Swal.close();
+      this.popUp.simpleMessage("Error removing data","error",1500);
+    });
+  }
+
+  removeItemFromArr ( arr, item ) {
+    var i = arr.indexOf( item );
+ 
+    if ( i !== -1 ) {
+        arr.splice( i, 1 );
+    }
+}
 
 }

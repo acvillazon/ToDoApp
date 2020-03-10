@@ -4,7 +4,7 @@ const User = require("../models/user.model");
 
 exports.getDashboards = async (req, res) =>{
     try {
-        let dashboards = await Dashboard.find();
+        let dashboards = await Dashboard.find({status:true});
         res.status(200).json({dashboards})
     } catch (error) {
         res.status(500).json({event:'Internal Error Server', error});        
@@ -13,7 +13,7 @@ exports.getDashboards = async (req, res) =>{
 
 exports.getDashboard = async (req, res) =>{
     try {
-        let dashboard = await (await Dashboard.findById(req.params.id).populate("members")).execPopulate();
+        let dashboard = await (await Dashboard.findOne({_id:req.params.id, status:true}).populate("members")).execPopulate();
         res.status(200).json({dashboard})
     } catch (error) {
         res.status(500).json({event:'Internal Error Server', error});        
@@ -24,7 +24,7 @@ exports.getDashboardInUser = async (req, res) =>{
     try {
         let auth = await Auth.findById(req.id_user);
 
-        let dashboards = await Dashboard.find({members:auth.user});
+        let dashboards = await Dashboard.find({members:auth.user,status:true});
 
         res.status(200).json({dashboards, event:"getDash"})
 
@@ -35,7 +35,6 @@ exports.getDashboardInUser = async (req, res) =>{
 
 exports.newDashboard = async (req, res) =>{
     try {
-        // let a = (await Auth.findById(req.id_user).populate("user")).execPopulate();
         let auth = await Auth.findById(req.id_user);
 
         let dashboard= new Dashboard({
@@ -106,3 +105,17 @@ exports.removeMembersToDashboard = async(req,res) =>{
         res.status(500).json({event:'Internal Error Server', error});        
     }
 }
+
+exports.removeDashboard = async (req,res) =>{
+    try {
+        console.log(req.params.id);
+        let a = await Dashboard.findByIdAndUpdate(
+            req.params.id,{status:false},{new:true});
+
+        console.log(a);
+        res.status(200).json({Dashboard,event:"Dashboard was archivated"})
+    } catch (error) {
+        res.status(500).json({error})
+        
+    }
+};

@@ -42,11 +42,13 @@ export class AuthService {
     this.router.navigate(['']);
   }
 
+  //Save token in LocalStorage
   saveToken(token:string){
     localStorage.setItem("token", token);
     this.token = token;
   }
 
+  //Load the token, if it's exists in localStorage.
   loadToken(){
     if(localStorage.getItem("token")){
       this.token = localStorage.getItem("token");

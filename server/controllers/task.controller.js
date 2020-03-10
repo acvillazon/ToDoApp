@@ -54,31 +54,15 @@ exports.newTask = async (req,res) =>{
     }
 };
 
-exports.updateTask = async (req,res) =>{
-    try {
-        let task = await Task.findOneAndUpdate({_id:req.body.Task['_id']}, {$set:{list:req.body.idList}},{new:true});
-        
-        let tasksUpdated = await Task.find({dashboard:req.body.dashboard, status: { $lte: 2 }})
-            .populate("assignedTo").exec();
-        let taskMod = _groupBy(tasksUpdated, task => task.list); 
-
-        res.status(200).json({task, taskMod:Array.from(taskMod), tasksUpdated, event:'Task updated'});  
-        
-    } catch (error) {
-        console.log("1",error)
-
-        res.status(500).json({event:'Internal Error Server'});
-    }
-};
-
 exports.updateTaskAll = async (req,res) =>{
     try {
         let taskReq=req.body.Task;
         let taskChange = {
             status:      Number(taskReq.status),
-            description: taskReq.description
+            description: taskReq.description,
+            list: taskReq.list
         }
-        let task = await Task.findOneAndUpdate({_id:taskReq._id}, {$set:taskChange},{new:true});
+        let task = await (await Task.findOneAndUpdate({_id:taskReq._id}, {$set:taskChange},{new:true}).populate('assignedTo')).execPopulate();
 
         let tasksUpdated = await Task.find({dashboard:req.body.dashboard, status: { $lte: 2 }})
             .populate("assignedTo").exec();
@@ -86,14 +70,12 @@ exports.updateTaskAll = async (req,res) =>{
 
         res.status(200).json({task, taskMod:Array.from(taskMod), tasksUpdated, event:'Task updated'});        
     } catch (error) {
-        console.log("2",error)
         res.status(500).json({event:'Internal Error Server'});
     }
 };
 
 exports.addMemberToTask = async (req,res) =>{
     try {
-        console.log(req.body.idTask, req.body.Task)
         let task = await Task.findByIdAndUpdate(req.body.idTask, 
             {$push:{assignedTo:req.body.Task}});   
 

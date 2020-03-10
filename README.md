@@ -59,9 +59,9 @@ App : http://localhost:4200
 * email: todotest@gmail.com
 * password: +123456
 
-Si por alguna razón ocurre un problema al momento de ejecutar el proyecto, se podra acceder mediante la siguiente URL.
+#### Si por alguna razón ocurre un problema al momento de ejecutar el proyecto, se podra acceder mediante la siguiente URL.
 
-[ToDo App](https://app-ui-todo.herokuapp.com), este link los re-dirigirá a una copia del proyecto que se encuentra corriendo en un servidor de HEROKU, para cualquier inquietud podran contactarme via correo electronico.
+#### [ToDo App](https://app-ui-todo.herokuapp.com), este link los re-dirigirá a una copia del proyecto que se encuentra corriendo en un servidor de HEROKU, para cualquier inquietud podran contactarme via correo electronico.
 
 #### Por el acceso a la base de datos no nos tenemos que preocupar, ya que implementamos una base de datos Online
 ## Autores 
